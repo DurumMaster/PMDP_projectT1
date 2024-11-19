@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">EvaluacionT1_2</string>
+    <string name="btnRegistrarNotaInicio">Registrar Nota</string>
+    <string name="btnConsultarNotaInicio">Consultar Nota</string>
 </resources>
