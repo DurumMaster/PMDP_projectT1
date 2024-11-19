@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">EvaluacionT1_2</string>
+    <string name="texto_titulo_registro">Registro de nota</string>
+    <string name="texto_btn_alumno">Seleccionar Alumno</string>
+    <string name="texto_pista_alumno">Selecciona el alumno</string>
+    <string name="texto_pista_asignatura">Selecciona la asignatura</string>
+    <string name="texto_btn_asignatura">Seleccionar Asignatura</string>
 </resources>
