@@ -59,4 +59,70 @@
         app:layout_constraintTop_toBottomOf="@+id/btnSeleccionarAlumno"
         app:layout_constraintEnd_toEndOf="parent"/>
 
+    <EditText
+        android:id="@+id/etNotaExamen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="@string/texto_pista_nota"
+        android:inputType="numberDecimal"
+        app:layout_constraintTop_toBottomOf="@+id/etAsignatura"
+        app:layout_constraintEnd_toStartOf="@+id/etNotaActividades"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <EditText
+        android:id="@+id/etNotaActividades"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="70dp"
+        android:hint="@string/texto_pista_nota"
+        android:inputType="numberDecimal"
+        app:layout_constraintTop_toBottomOf="@+id/etAsignatura"
+        app:layout_constraintStart_toEndOf="@+id/etNotaExamen"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <Button
+        android:id="@+id/btnCalcularNota"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:text="@string/texto_btn_calcular_nota"
+        android:layout_marginTop="15dp"
+        android:backgroundTint="@color/rojo"
+        app:layout_constraintTop_toBottomOf="@+id/etNotaExamen"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <EditText
+        android:id="@+id/etResultado"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="20dp"
+        android:textAlignment="center"
+        android:enabled="false"
+        android:inputType="numberDecimal"
+        app:layout_constraintTop_toBottomOf="@+id/etNotaActividades"
+        app:layout_constraintStart_toEndOf="@+id/btnCalcularNota"/>
+
+    <Button
+        android:id="@+id/btnGuardarDatos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/texto_btn_guardar_datos"
+        android:backgroundTint="@color/rojo"
+        android:onClick="onGuardarDatosClick"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnLimpiarDatos"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <Button
+        android:id="@+id/btnLimpiarDatos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/texto_btn_guardar_datos"
+        android:backgroundTint="@color/rojo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnGuardarDatos"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

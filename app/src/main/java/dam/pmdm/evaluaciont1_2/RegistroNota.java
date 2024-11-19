@@ -1,6 +1,8 @@
 package dam.pmdm.evaluaciont1_2;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,4 +23,10 @@ public class RegistroNota extends AppCompatActivity {
             return insets;
         });
     }
+
+    public void onGuardarDatosClick(View view){
+        Intent intent = new Intent(this, SeleccionAsignatura.class);
+        startActivity(intent);
+    }
+
 }

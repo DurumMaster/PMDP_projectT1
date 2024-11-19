@@ -5,6 +5,123 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="18dp"
     tools:context=".SeleccionAsignatura">
+
+    <TextView
+        android:id="@+id/tvTituloSeleccion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/texto_titulo_seleccion"
+        android:textColor="@color/rojo"
+        android:textSize="22sp"
+        android:textStyle="bold"/>
+
+    <Button
+        android:id="@+id/btnAsignatura1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/texto_btn_asignatura_1"
+        android:paddingTop="0dp"
+        android:paddingBottom="0dp"
+        android:textSize="18sp"
+        android:layout_marginTop="12dp"
+        android:textAlignment="textStart"
+        android:textColor="@color/black"
+        android:background="@android:color/transparent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTituloSeleccion"/>
+
+    <Button
+        android:id="@+id/btnAsignatura2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/texto_btn_asignatura_2"
+        android:paddingTop="0dp"
+        android:paddingBottom="0dp"
+        android:textSize="18sp"
+        android:textAlignment="textStart"
+        android:textColor="@color/black"
+        android:background="@android:color/transparent"
+        app:layout_constraintTop_toBottomOf="@+id/btnAsignatura1"/>
+
+    <Button
+        android:id="@+id/btnAsignatura3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/texto_btn_asignatura_3"
+        android:paddingTop="0dp"
+        android:paddingBottom="0dp"
+        android:textSize="18sp"
+        android:textAlignment="textStart"
+        android:textColor="@color/black"
+        android:background="@android:color/transparent"
+        app:layout_constraintTop_toBottomOf="@+id/btnAsignatura2"/>
+
+    <Button
+        android:id="@+id/btnAsignatura4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/texto_btn_asignatura_4"
+        android:paddingTop="0dp"
+        android:paddingBottom="0dp"
+        android:textSize="18sp"
+        android:textAlignment="textStart"
+        android:textColor="@color/black"
+        android:background="@android:color/transparent"
+        app:layout_constraintTop_toBottomOf="@+id/btnAsignatura3"/>
+
+    <Button
+        android:id="@+id/btnAsignatura5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/texto_btn_asignatura_5"
+        android:paddingTop="0dp"
+        android:paddingBottom="0dp"
+        android:textSize="18sp"
+        android:textAlignment="textStart"
+        android:textColor="@color/black"
+        android:background="@android:color/transparent"
+        app:layout_constraintTop_toBottomOf="@+id/btnAsignatura4"/>
+
+    <Button
+        android:id="@+id/btnAsignatura6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/texto_btn_asignatura_6"
+        android:paddingTop="0dp"
+        android:paddingBottom="0dp"
+        android:textSize="18sp"
+        android:textAlignment="textStart"
+        android:textColor="@color/black"
+        android:background="@android:color/transparent"
+        app:layout_constraintTop_toBottomOf="@+id/btnAsignatura5"/>
+
+    <EditText
+        android:id="@+id/etCodigoAsignatura"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:textSize="18sp"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@id/btnSeleccionAceptar" />
+
+    <Button
+        android:id="@+id/btnSeleccionAceptar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/texto_btn_seleccion_aceptar"
+        android:backgroundTint="@color/rojo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnSeleccionCancelar"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <Button
+        android:id="@+id/btnSeleccionCancelar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/texto_btn_seleccion_cancelar"
+        android:backgroundTint="@color/rojo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnSeleccionAceptar"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
