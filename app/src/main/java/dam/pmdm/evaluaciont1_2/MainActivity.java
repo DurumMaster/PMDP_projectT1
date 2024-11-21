@@ -24,8 +24,4 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void prueba(View view){
-        startActivity(new Intent(this, RegistroNota.class));
-    }
-
 }
