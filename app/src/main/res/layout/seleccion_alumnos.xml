@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:padding="16dp"
+    tools:context=".SeleccionAlumnos">
 
     <TextView
         android:id="@+id/tvTituloSeleccionAlumno"
@@ -28,6 +29,7 @@
         android:layout_height="23dp"
         android:layout_marginTop="16dp"
         android:background="@android:color/transparent"
+        android:onClick="prueba"
         android:paddingTop="0dp"
         android:paddingBottom="0dp"
         android:text="@string/btn_alumno_1"

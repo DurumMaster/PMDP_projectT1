@@ -12,7 +12,8 @@
     <string name="texto_btn_guardar_datos">Guardar Datos</string>
     <string name="texto_titulo_seleccion">Selección de Asignatura</string>
     <string name="texto_btn_asignatura_1">PMDM</string>
-    <string name="texto_btn_asignatura_6">IOS</string>
+    <string name="texto_btn_asignatura_6">IACC</string>
+    <string name="texto_btn_asignatura_7">IOS</string>
     <string name="texto_btn_asignatura_5">SGE</string>
     <string name="texto_btn_asignatura_4">DI</string>
     <string name="texto_btn_asignatura_3">PSP</string>

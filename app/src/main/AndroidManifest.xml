@@ -16,6 +16,9 @@
             android:name=".SeleccionAsignatura"
             android:exported="false" />
         <activity
+            android:name=".SeleccionAlumos"
+            android:exported="false" />
+        <activity
             android:name=".RegistroNota"
             android:exported="false" />
         <activity
