@@ -2,4 +2,21 @@
     <string name="app_name">EvaluacionT1_2</string>
     <string name="btnRegistrarNotaInicio">Registrar Nota</string>
     <string name="btnConsultarNotaInicio">Consultar Nota</string>
+    <string name="texto_titulo_registro">Registro de nota</string>
+    <string name="texto_btn_alumno">Seleccionar Alumno</string>
+    <string name="texto_pista_alumno">Selecciona el alumno</string>
+    <string name="texto_pista_asignatura">Selecciona la asignatura</string>
+    <string name="texto_btn_asignatura">Seleccionar Asignatura</string>
+    <string name="texto_pista_nota">Nota del examen</string>
+    <string name="texto_btn_calcular_nota">Calcular Nota</string>
+    <string name="texto_btn_guardar_datos">Guardar Datos</string>
+    <string name="texto_titulo_seleccion">Selección de Asignatura</string>
+    <string name="texto_btn_asignatura_1">PMDM</string>
+    <string name="texto_btn_asignatura_6">IOS</string>
+    <string name="texto_btn_asignatura_5">SGE</string>
+    <string name="texto_btn_asignatura_4">DI</string>
+    <string name="texto_btn_asignatura_3">PSP</string>
+    <string name="texto_btn_asignatura_2">AD</string>
+    <string name="texto_btn_seleccion_aceptar">Aceptar</string>
+    <string name="texto_btn_seleccion_cancelar">Cancelar</string>
 </resources>
