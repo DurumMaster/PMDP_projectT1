@@ -25,6 +25,7 @@
         android:layout_height="wrap_content"
         android:backgroundTint="@color/red"
         android:text="@string/btnRegistrarNotaInicio"
+        android:onClick="onRegistrarClick"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnConsultar"
         app:layout_constraintStart_toStartOf="parent" />
@@ -35,6 +36,7 @@
         android:layout_height="wrap_content"
         android:backgroundTint="@color/red"
         android:text="@string/btnConsultarNotaInicio"
+        android:onClick="onConsultarClick"
         tools:layout_editor_absoluteX="256dp"
         tools:layout_editor_absoluteY="665dp"
         app:layout_constraintBottom_toBottomOf="parent"

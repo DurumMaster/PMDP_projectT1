@@ -47,4 +47,10 @@
     <string name="txt_titulo_consultar_notas">Consulta de Notas por Alumno</string>
     <string name="hint_et_consultar_notas">Nombre del Alumno</string>
     <string name="btn_seleccionar_alumno_consulta_notas">Seleccionar Alumno</string>
+    <string name="toast_nota_examen">La nota de examen debe estar entre 0 y 10</string>
+    <string name="toast_nota_actividades">La nota de actividades debe estar entre 0 y 10</string>
+    <string name="toast_registro_datos_alumno">Los campos de alumno y asignatura deben estar rellenados</string>
+    <string name="texto_datos_actualizados">Datos Actualizados</string>
+    <string name="toast_registro_validacion_nota_examen">Debe rellenar el campo de nota de examen</string>
+    <string name="toast_registro_validacion_nota_actividades">Debe rellenar el campo de nota de actividades</string>
 </resources>

@@ -24,4 +24,14 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public void onRegistrarClick(View view){
+        Intent intent = new Intent(this, RegistroNota.class);
+        startActivity(intent);
+    }
+
+    public void onConsultarClick(View view){
+//        Intent intent = new Intent(this, RegistroNota.class);
+//        startActivity(intent);
+    }
+
 }
