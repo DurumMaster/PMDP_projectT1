@@ -9,6 +9,10 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class SeleccionAlumnos extends AppCompatActivity {
+
+    private EditText alumnoSeleccionado;
+    private String alumnoSeleccionadoTexto = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,141 +40,66 @@ public class SeleccionAlumnos extends AppCompatActivity {
         Button alumno20 = findViewById(R.id.btnAlumno20);
         Button alumno21 = findViewById(R.id.btnAlumno21);
         Button alumno22 = findViewById(R.id.btnAlumno22);
-        EditText alumnoSeleccionado = findViewById(R.id.etAlumnoSeleccionado);
+
+        alumnoSeleccionado = findViewById(R.id.etAlumnoSeleccionado);
+
+        alumno1.setOnClickListener(v -> setAlumnoSeleccionado(alumno1));
+        alumno2.setOnClickListener(v -> setAlumnoSeleccionado(alumno2));
+        alumno3.setOnClickListener(v -> setAlumnoSeleccionado(alumno3));
+        alumno4.setOnClickListener(v -> setAlumnoSeleccionado(alumno4));
+        alumno5.setOnClickListener(v -> setAlumnoSeleccionado(alumno5));
+        alumno6.setOnClickListener(v -> setAlumnoSeleccionado(alumno6));
+        alumno7.setOnClickListener(v -> setAlumnoSeleccionado(alumno7));
+        alumno8.setOnClickListener(v -> setAlumnoSeleccionado(alumno8));
+        alumno9.setOnClickListener(v -> setAlumnoSeleccionado(alumno9));
+        alumno10.setOnClickListener(v -> setAlumnoSeleccionado(alumno10));
+        alumno11.setOnClickListener(v -> setAlumnoSeleccionado(alumno11));
+        alumno12.setOnClickListener(v -> setAlumnoSeleccionado(alumno12));
+        alumno13.setOnClickListener(v -> setAlumnoSeleccionado(alumno13));
+        alumno14.setOnClickListener(v -> setAlumnoSeleccionado(alumno14));
+        alumno15.setOnClickListener(v -> setAlumnoSeleccionado(alumno15));
+        alumno16.setOnClickListener(v -> setAlumnoSeleccionado(alumno16));
+        alumno17.setOnClickListener(v -> setAlumnoSeleccionado(alumno17));
+        alumno18.setOnClickListener(v -> setAlumnoSeleccionado(alumno18));
+        alumno19.setOnClickListener(v -> setAlumnoSeleccionado(alumno19));
+        alumno20.setOnClickListener(v -> setAlumnoSeleccionado(alumno20));
+        alumno21.setOnClickListener(v -> setAlumnoSeleccionado(alumno21));
+        alumno22.setOnClickListener(v -> setAlumnoSeleccionado(alumno22));
+
         Button aceptarSeleccionAlumno = findViewById(R.id.btnAceptarSeleccionAlumno);
         Button cancelarSeleccionAlumno = findViewById(R.id.btnCancelarSeleccionAlumno);
 
-        alumno1.setOnClickListener(v -> {
-            String textoBoton = alumno1.getText().toString().toUpperCase();
-            alumnoSeleccionado.setText(textoBoton);
-        });
-
-        alumno2.setOnClickListener(v -> {
-            String textoBoton = alumno2.getText().toString().toUpperCase();
-            alumnoSeleccionado.setText(textoBoton);
-        });
-
-        alumno3.setOnClickListener(v -> {
-            String textoBoton = alumno3.getText().toString().toUpperCase();
-            alumnoSeleccionado.setText(textoBoton);
-        });
-
-        alumno4.setOnClickListener(v -> {
-            String textoBoton = alumno4.getText().toString().toUpperCase();
-            alumnoSeleccionado.setText(textoBoton);
-        });
-
-        alumno5.setOnClickListener(v -> {
-            String textoBoton = alumno5.getText().toString().toUpperCase();
-            alumnoSeleccionado.setText(textoBoton);
-        });
-
-        alumno6.setOnClickListener(v -> {
-            String textoBoton = alumno6.getText().toString().toUpperCase();
-            alumnoSeleccionado.setText(textoBoton);
-        });
-
-        alumno7.setOnClickListener(v -> {
-            String textoBoton = alumno7.getText().toString().toUpperCase();
-            alumnoSeleccionado.setText(textoBoton);
-        });
-
-        alumno8.setOnClickListener(v -> {
-            String textoBoton = alumno8.getText().toString().toUpperCase();
-            alumnoSeleccionado.setText(textoBoton);
-        });
-
-        alumno1.setOnClickListener(v -> {
-            String textoBoton = alumno1.getText().toString().toUpperCase();
-            alumnoSeleccionado.setText(textoBoton);
-        });
-
-        alumno9.setOnClickListener(v -> {
-            String textoBoton = alumno9.getText().toString().toUpperCase();
-            alumnoSeleccionado.setText(textoBoton);
-        });
-
-        alumno10.setOnClickListener(v -> {
-            String textoBoton = alumno10.getText().toString().toUpperCase();
-            alumnoSeleccionado.setText(textoBoton);
-        });
-
-        alumno11.setOnClickListener(v -> {
-            String textoBoton = alumno11.getText().toString().toUpperCase();
-            alumnoSeleccionado.setText(textoBoton);
-        });
-
-        alumno12.setOnClickListener(v -> {
-            String textoBoton = alumno12.getText().toString().toUpperCase();
-            alumnoSeleccionado.setText(textoBoton);
-        });
-
-        alumno13.setOnClickListener(v -> {
-            String textoBoton = alumno13.getText().toString().toUpperCase();
-            alumnoSeleccionado.setText(textoBoton);
-        });
-
-        alumno14.setOnClickListener(v -> {
-            String textoBoton = alumno14.getText().toString().toUpperCase();
-            alumnoSeleccionado.setText(textoBoton);
-        });
-
-        alumno15.setOnClickListener(v -> {
-            String textoBoton = alumno15.getText().toString().toUpperCase();
-            alumnoSeleccionado.setText(textoBoton);
-        });
-
-        alumno16.setOnClickListener(v -> {
-            String textoBoton = alumno16.getText().toString().toUpperCase();
-            alumnoSeleccionado.setText(textoBoton);
-        });
-
-        alumno17.setOnClickListener(v -> {
-            String textoBoton = alumno17.getText().toString().toUpperCase();
-            alumnoSeleccionado.setText(textoBoton);
-        });
-
-        alumno18.setOnClickListener(v -> {
-            String textoBoton = alumno18.getText().toString().toUpperCase();
-            alumnoSeleccionado.setText(textoBoton);
-        });
-
-        alumno19.setOnClickListener(v -> {
-            String textoBoton = alumno19.getText().toString().toUpperCase();
-            alumnoSeleccionado.setText(textoBoton);
-        });
-
-        alumno20.setOnClickListener(v -> {
-            String textoBoton = alumno20.getText().toString().toUpperCase();
-            alumnoSeleccionado.setText(textoBoton);
-        });
-
-        alumno21.setOnClickListener(v -> {
-            String textoBoton = alumno21.getText().toString().toUpperCase();
-            alumnoSeleccionado.setText(textoBoton);
-        });
-
-        alumno22.setOnClickListener(v -> {
-            String textoBoton = alumno22.getText().toString().toUpperCase();
-            alumnoSeleccionado.setText(textoBoton);
-        });
-
         aceptarSeleccionAlumno.setOnClickListener(v -> {
-            String textoParaEnviar = alumnoSeleccionado.getText().toString().trim();
-            if (textoParaEnviar.isEmpty()) {
+            if (alumnoSeleccionadoTexto.isEmpty()) {
                 Toast.makeText(this, "Debe especificar el alumno seleccionado", Toast.LENGTH_SHORT).show();
             } else {
                 Intent intent = new Intent();
-                intent.putExtra("ALUMNO", textoParaEnviar);
+                intent.putExtra("ALUMNO", alumnoSeleccionadoTexto);
                 setResult(RESULT_OK, intent);
                 finish();
             }
         });
 
-        cancelarSeleccionAlumno.setOnClickListener(v -> {
-            finish();
-        });
+        cancelarSeleccionAlumno.setOnClickListener(v -> finish());
+    }
 
+    private void setAlumnoSeleccionado(Button alumnoButton) {
+        alumnoSeleccionadoTexto = alumnoButton.getText().toString().toUpperCase();
+        alumnoSeleccionado.setText(alumnoSeleccionadoTexto);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("alumnoSeleccionado", alumnoSeleccionadoTexto);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        if (savedInstanceState != null) {
+            alumnoSeleccionadoTexto = savedInstanceState.getString("alumnoSeleccionado", "");
+            alumnoSeleccionado.setText(alumnoSeleccionadoTexto);
+        }
     }
 }
-
