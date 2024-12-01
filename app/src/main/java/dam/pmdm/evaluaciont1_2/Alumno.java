@@ -3,7 +3,7 @@ package dam.pmdm.evaluaciont1_2;
 import java.io.Serializable;
 
 public class Alumno implements Serializable {
-    private final long serialID = 1L;
+    private static final long serialID = 1L;
 
     private String nombre;
     private String asignatura;

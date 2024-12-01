@@ -53,4 +53,6 @@
     <string name="texto_datos_actualizados">Datos Actualizados</string>
     <string name="toast_registro_validacion_nota_examen">Debe rellenar el campo de nota de examen</string>
     <string name="toast_registro_validacion_nota_actividades">Debe rellenar el campo de nota de actividades</string>
+    <string name="toast_registro_notas_vacias">Los campos de las notas deben estar rellenados</string>
+    <string name="texto_pista_nota_actividades">Nota de actividades</string>
 </resources>

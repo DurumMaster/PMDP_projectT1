@@ -1,7 +1,9 @@
 package dam.pmdm.evaluaciont1_2;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -13,10 +15,13 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutput;
@@ -97,7 +102,7 @@ public class RegistroNota extends AppCompatActivity {
                     Toast.makeText(this, R.string.toast_nota_examen, Toast.LENGTH_SHORT).show();
                 }
 
-                etResultado.setText(String.valueOf(notaFinal));
+                etResultado.setText(String.format("%.2f", notaFinal));
 
             } else {
                 Toast.makeText(this, R.string.toast_registro_validacion_nota_actividades, Toast.LENGTH_SHORT).show();
@@ -118,19 +123,28 @@ public class RegistroNota extends AppCompatActivity {
     }
 
     public void onGuardarDatosClick(View view){
-        leerArchivoBinario();
         String nombre = etAlumno.getText().toString();
         String asignatura = etAsignatura.getText().toString();
+        String notaExamen = etNotaExamen.getText().toString();
+        String notaActividades = etNotaActividades.getText().toString();
+        String notaFinal = etResultado.getText().toString();
         Alumno alumno = null;
-        if(!nombre.isEmpty() && !asignatura.isEmpty()){
-            for (int i = 0; i < listaAlumnos.size(); i++) {
-                alumno = listaAlumnos.get(i);
-                if(alumno.getNombre().equals(nombre) && alumno.getAsignatura().equals(asignatura)){
-                    alumno.setNotaExamenes(Double.parseDouble(etNotaExamen.getText().toString()));
-                    alumno.setNotaActividades(Double.parseDouble(etNotaActividades.getText().toString()));
-                    alumno.setNotaFinal(Double.parseDouble(etResultado.getText().toString()));
-                    listaAlumnos.set(i, alumno);
+        boolean encontrado = false;
+        if(!nombre.isEmpty() && !asignatura.isEmpty()){ 
+            if(!notaExamen.isEmpty() && !notaActividades.isEmpty() && !notaFinal.isEmpty()){
+                leerArchivoBinario();
+                for (int i = 0; i < listaAlumnos.size() && !encontrado; i++) {
+                    alumno = listaAlumnos.get(i);
+                    if(nombre.equals(alumno.getNombre()) && asignatura.equals(alumno.getAsignatura())){
+                        alumno.setNotaExamenes(Double.parseDouble(notaExamen));
+                        alumno.setNotaActividades(Double.parseDouble(notaActividades));
+                        alumno.setNotaFinal(Double.parseDouble(notaFinal));
+                        listaAlumnos.set(i, alumno);
+                        encontrado = true;
+                    }
                 }
+            } else {
+                Toast.makeText(this, R.string.toast_registro_notas_vacias, Toast.LENGTH_SHORT).show();
             }
             escribirArchivoBinario();
         } else {
@@ -140,30 +154,57 @@ public class RegistroNota extends AppCompatActivity {
 
     private void escribirArchivoBinario() {
         try {
-            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("Ficheros/alumnos.dat"));
+            File archivo = new File(getExternalFilesDir(null), "alumnos.dat");
+            int i = 0;
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(archivo));
             for (Alumno alumno : listaAlumnos){
                 oos.writeObject(alumno);
             }
             oos.close();
+            limpiarCampos();
             Toast.makeText(this, R.string.texto_datos_actualizados, Toast.LENGTH_SHORT).show();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    private void limpiarCampos() {
+        etNotaExamen.setText("");
+        etNotaActividades.setText("");
+        etResultado.setText("");
+        etAsignatura.setText("");
+        etAlumno.setText("");
+    }
+
     private void leerArchivoBinario(){
         try {
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream("Ficheros/alumnos.dat"));
-            boolean seguir = true;
-
-            while(seguir){
-                try{
-                    listaAlumnos.add((Alumno) ois.readObject());
-                } catch (Exception e){
-                    seguir = false;
+            File archivo = new File(getExternalFilesDir(null), "alumnos.dat");
+            if(archivo.exists()){
+                ObjectInputStream ois = new ObjectInputStream(new FileInputStream(archivo));
+                boolean seguir = true;
+                Alumno alumno = null;
+                while(seguir){
+                    try{
+                        alumno = (Alumno) ois.readObject();
+                        listaAlumnos.add(alumno);
+                        Log.d("Pruebas", alumno.getNombre() + " - " + alumno.getAsignatura() + " - " + alumno.getNotaFinal());
+                    } catch (Exception e){
+                        seguir = false;
+                    }
                 }
+                ois.close();
+            } else {
+                BufferedReader reader = new BufferedReader(new FileReader("/data/data/dam.pmdm.evaluaciont1_2/files/Alumnos.txt"));
+                String linea;
+                String [] datos;
+                while((linea = reader.readLine()) != null){
+                    datos = linea.split(",");
+                    listaAlumnos.add(new Alumno(datos[0], datos[1], Double.parseDouble(datos[2]), Double.parseDouble(datos[3]), Double.parseDouble(datos[4])));
+                }
+                Log.d("Pruebas", String.valueOf(listaAlumnos.size()));
+                reader.close();
             }
-            ois.close();
+
         } catch (FileNotFoundException e){
             e.printStackTrace();
         } catch (IOException e){
