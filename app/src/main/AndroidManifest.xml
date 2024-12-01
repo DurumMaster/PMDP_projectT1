@@ -13,6 +13,12 @@
         android:theme="@style/Theme.EvaluacionT1_2"
         tools:targetApi="31">
         <activity
+            android:name=".SeleccionAlumnos"
+            android:exported="false"/>
+        <activity
+            android:name=".ConsultaNotas"
+            android:exported="false"/>
+        <activity
             android:name=".SeleccionAsignatura"
             android:exported="false" />
         <activity
