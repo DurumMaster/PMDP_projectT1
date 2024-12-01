@@ -47,4 +47,7 @@
     <string name="txt_titulo_consultar_notas">Consulta de Notas por Alumno</string>
     <string name="hint_et_consultar_notas">Nombre del Alumno</string>
     <string name="btn_seleccionar_alumno_consulta_notas">Seleccionar Alumno</string>
+    <string name="btn_limpiar_datos_consulta">Limpiar Datos</string>
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
