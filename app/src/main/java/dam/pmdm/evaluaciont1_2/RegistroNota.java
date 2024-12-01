@@ -9,6 +9,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -27,6 +29,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 public class RegistroNota extends AppCompatActivity {
 
@@ -37,6 +40,10 @@ public class RegistroNota extends AppCompatActivity {
     private EditText etResultado;
 
     private static ArrayList<Alumno> listaAlumnos;
+    ActivityResultLauncher<Intent> seleccionAlumno;
+    ActivityResultLauncher<Intent> seleccionAsignatura;
+    private String alumno;
+    private String asignatura;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,15 +63,35 @@ public class RegistroNota extends AppCompatActivity {
         etNotaActividades = findViewById(R.id.etNotaActividades);
         etResultado = findViewById(R.id.etResultado);
 
-        String alumno = getIntent().getStringExtra("ALUMNO");
-        if(alumno != null){
-            etAlumno.setText(alumno);
-        }
+        seleccionAlumno = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == RESULT_OK) {
+                        Intent data = result.getData();
+                        if (data != null) {
+                            alumno = data.getStringExtra("ALUMNO");
+                            if (alumno != null) {
+                                etAlumno.setText(alumno);
+                            }
+                        }
+                    }
+                }
+        );
 
-        String asignatura = getIntent().getStringExtra("ASIGNATURA");
-        if(asignatura != null){
-            etAsignatura.setText(asignatura);
-        }
+        seleccionAsignatura = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == RESULT_OK) {
+                        Intent data = result.getData();
+                        if (data != null) {
+                            asignatura = data.getStringExtra("ASIGNATURA");
+                            if (asignatura != null) {
+                                etAsignatura.setText(asignatura);
+                            }
+                        }
+                    }
+                }
+        );
 
     }
 
@@ -114,12 +141,12 @@ public class RegistroNota extends AppCompatActivity {
 
     public void onSeleccionarAsignaturaClick(View view){
         Intent intent = new Intent(this, SeleccionAsignatura.class);
-        startActivity(intent);
+        seleccionAsignatura.launch(intent);
     }
 
     public void onSeleccionarAlumnoClick(View view){
-//        Intent intent = new Intent(this, SeleccionAlumnos.class);
-//        startActivity(intent);
+        Intent intent = new Intent(this, SeleccionAlumnos.class);
+        seleccionAlumno.launch(intent);
     }
 
     public void onGuardarDatosClick(View view){
@@ -154,11 +181,11 @@ public class RegistroNota extends AppCompatActivity {
 
     private void escribirArchivoBinario() {
         try {
-            File archivo = new File(getExternalFilesDir(null), "alumnos.dat");
-            int i = 0;
+            File archivo = new File("/data/data/dam.pmdm.evaluaciont1_2/files/alumnos.dat");
             ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(archivo));
             for (Alumno alumno : listaAlumnos){
                 oos.writeObject(alumno);
+                Log.d("Pruebas", alumno.getNombre() + " - " + alumno.getAsignatura() + " - " + alumno.getNotaFinal());
             }
             oos.close();
             limpiarCampos();
@@ -178,7 +205,7 @@ public class RegistroNota extends AppCompatActivity {
 
     private void leerArchivoBinario(){
         try {
-            File archivo = new File(getExternalFilesDir(null), "alumnos.dat");
+            File archivo = new File("/data/data/dam.pmdm.evaluaciont1_2/files/alumnos.dat");
             if(archivo.exists()){
                 ObjectInputStream ois = new ObjectInputStream(new FileInputStream(archivo));
                 boolean seguir = true;
@@ -194,15 +221,7 @@ public class RegistroNota extends AppCompatActivity {
                 }
                 ois.close();
             } else {
-                BufferedReader reader = new BufferedReader(new FileReader("/data/data/dam.pmdm.evaluaciont1_2/files/Alumnos.txt"));
-                String linea;
-                String [] datos;
-                while((linea = reader.readLine()) != null){
-                    datos = linea.split(",");
-                    listaAlumnos.add(new Alumno(datos[0], datos[1], Double.parseDouble(datos[2]), Double.parseDouble(datos[3]), Double.parseDouble(datos[4])));
-                }
-                Log.d("Pruebas", String.valueOf(listaAlumnos.size()));
-                reader.close();
+                listaAlumnos = Alumno.cargaInicialAlumnosTxt();
             }
 
         } catch (FileNotFoundException e){
@@ -215,11 +234,21 @@ public class RegistroNota extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        escribirArchivoBinario();
+        outState.putString("NOMRE_ALUMNO", etAlumno.getText().toString());
+        outState.putString("NOMRE_ASIGNATURA", etAsignatura.getText().toString());
+        outState.putString("NOTA_EXAMEN", etNotaExamen.getText().toString());
+        outState.putString("NOTA_ACT", etNotaActividades.getText().toString());
+        outState.putString("NOTA_FINAL", etResultado.getText().toString());
     }
 
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
+
+        etAlumno.setText(savedInstanceState.getString("NOMRE_ALUMNO"));
+        etAsignatura.setText(savedInstanceState.getString("NOMRE_ASIGNATURA"));
+        etNotaExamen.setText(savedInstanceState.getString("NOTA_EXAMEN"));
+        etNotaActividades.setText(savedInstanceState.getString("NOTA_ACT"));
+        etResultado.setText(savedInstanceState.getString("NOTA_FINAL"));
     }
 }

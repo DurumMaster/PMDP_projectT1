@@ -6,8 +6,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -26,16 +29,11 @@ public class ConsultaNotas extends AppCompatActivity {
 
     private EditText etAlummo;
     private Button btnSeleccionLimpiar;
-    private FrameLayout flNota1;
-    private FrameLayout flNota2;
-    private FrameLayout flNota3;
-    private FrameLayout flNota4;
-    private FrameLayout flNota5;
-    private FrameLayout flNota6;
-    private FrameLayout flNota7;
+    private TextView tvError;
 
     String alumno;
     List<FrameLayout> contenedores;
+    ActivityResultLauncher<Intent> seleccionAlumno;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +48,7 @@ public class ConsultaNotas extends AppCompatActivity {
 
         etAlummo = findViewById(R.id.etAlumnoConsulta);
         btnSeleccionLimpiar = findViewById(R.id.btnSeleccionarAlumnoConsulta);
+        tvError = findViewById(R.id.tvError);
 
         contenedores = Arrays.asList(
             findViewById(R.id.flNota1),
@@ -61,15 +60,23 @@ public class ConsultaNotas extends AppCompatActivity {
             findViewById(R.id.flNota7)
         );
 
-
-        alumno = getIntent().getStringExtra("ALUMNO");
-
-        if (alumno != null) {
-            etAlummo.setText(alumno);
-            btnSeleccionLimpiar.setText(R.string.btn_limpiar_datos_consulta);
-            List<Alumno> asignaturas = leerAsignaturasAlumno();
-            mostrarAsignaturas(asignaturas, contenedores);
-        }
+        seleccionAlumno = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == RESULT_OK) {
+                        Intent data = result.getData();
+                        if (data != null) {
+                            alumno = data.getStringExtra("ALUMNO");
+                            if (alumno != null) {
+                                etAlummo.setText(alumno);
+                                btnSeleccionLimpiar.setText(R.string.btn_limpiar_datos_consulta);
+                                List<Alumno> asignaturas = leerAsignaturasAlumno();
+                                mostrarAsignaturas(asignaturas, contenedores);
+                            }
+                        }
+                    }
+                }
+        );
     }
 
     private void mostrarAsignaturas(List<Alumno> asignaturas, List<FrameLayout> contenedores) {
@@ -82,6 +89,8 @@ public class ConsultaNotas extends AppCompatActivity {
                         .replace(contenedores.get(i).getId(), NotaFragment.newInstance(asignatura.getAsignatura(), String.valueOf(asignatura.getNotaFinal())))
                         .commit();
             }
+        } else {
+            tvError.setText(R.string.tv_consultanotas_error_vacio);
         }
 
 
@@ -89,13 +98,14 @@ public class ConsultaNotas extends AppCompatActivity {
 
     public void seleccionarAlumno(View view) {
 
+        tvError.setText("");
         String btnText = btnSeleccionLimpiar.getText().toString();
 
         if (btnText.equals(getResources().getString(R.string.btn_limpiar_datos_consulta))) {
             limpiarDatos();
         } else {
             Intent intent = new Intent(this, SeleccionAlumnos.class);
-            startActivity(intent);
+            seleccionAlumno.launch(intent);
         }
     }
 
@@ -117,7 +127,8 @@ public class ConsultaNotas extends AppCompatActivity {
         List<Alumno> asignaturas = new ArrayList<Alumno>();
         Alumno asignatura;
         boolean acabar = false;
-        File file = new File(getExternalFilesDir(null), "alumnos.dat");
+        //getFilesDir(),"alumnos.dat"
+        File file = new File("/data/data/dam.pmdm.evaluaciont1_2/files/alumnos.dat");
 
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
             while (!acabar) {
@@ -134,7 +145,6 @@ public class ConsultaNotas extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return asignaturas;
     }
 
