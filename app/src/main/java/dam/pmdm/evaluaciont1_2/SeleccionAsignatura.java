@@ -10,10 +10,20 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class SeleccionAsignatura extends AppCompatActivity {
 
+    private EditText asignaturaSeleccionada;
+    private String asignaturaSeleccionadaTexto = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seleccion_asignatura);
+
+        asignaturaSeleccionada = findViewById(R.id.etCodigoAsignatura);
+
+        if (savedInstanceState != null) {
+            asignaturaSeleccionadaTexto = savedInstanceState.getString("asignaturaSeleccionada", "");
+            asignaturaSeleccionada.setText(asignaturaSeleccionadaTexto);
+        }
 
         Button asignatura1 = findViewById(R.id.btnAsignatura1);
         Button asignatura2 = findViewById(R.id.btnAsignatura2);
@@ -22,43 +32,42 @@ public class SeleccionAsignatura extends AppCompatActivity {
         Button asignatura5 = findViewById(R.id.btnAsignatura5);
         Button asignatura6 = findViewById(R.id.btnAsignatura6);
         Button asignatura7 = findViewById(R.id.btnAsignatura7);
-        EditText asignaturaSeleccionada = findViewById(R.id.etCodigoAsignatura);
         Button aceptarSeleccionAsignatura = findViewById(R.id.btnSeleccionAceptar);
         Button cancelarSeleccionAsignatura = findViewById(R.id.btnSeleccionCancelar);
 
         asignatura1.setOnClickListener(v -> {
-            String textoBoton = asignatura1.getText().toString().toUpperCase();
-            asignaturaSeleccionada.setText(textoBoton);
+            asignaturaSeleccionadaTexto = asignatura1.getText().toString().toUpperCase();
+            asignaturaSeleccionada.setText(asignaturaSeleccionadaTexto);
         });
 
         asignatura2.setOnClickListener(v -> {
-            String textoBoton = asignatura2.getText().toString().toUpperCase();
-            asignaturaSeleccionada.setText(textoBoton);
+            asignaturaSeleccionadaTexto = asignatura2.getText().toString().toUpperCase();
+            asignaturaSeleccionada.setText(asignaturaSeleccionadaTexto);
         });
 
         asignatura3.setOnClickListener(v -> {
-            String textoBoton = asignatura3.getText().toString().toUpperCase();
-            asignaturaSeleccionada.setText(textoBoton);
+            asignaturaSeleccionadaTexto = asignatura3.getText().toString().toUpperCase();
+            asignaturaSeleccionada.setText(asignaturaSeleccionadaTexto);
         });
 
         asignatura4.setOnClickListener(v -> {
-            String textoBoton = asignatura4.getText().toString().toUpperCase();
-            asignaturaSeleccionada.setText(textoBoton);
+            asignaturaSeleccionadaTexto = asignatura4.getText().toString().toUpperCase();
+            asignaturaSeleccionada.setText(asignaturaSeleccionadaTexto);
         });
 
         asignatura5.setOnClickListener(v -> {
-            String textoBoton = asignatura5.getText().toString().toUpperCase();
-            asignaturaSeleccionada.setText(textoBoton);
+            asignaturaSeleccionadaTexto = asignatura5.getText().toString().toUpperCase();
+            asignaturaSeleccionada.setText(asignaturaSeleccionadaTexto);
         });
 
         asignatura6.setOnClickListener(v -> {
-            String textoBoton = asignatura6.getText().toString().toUpperCase();
-            asignaturaSeleccionada.setText(textoBoton);
+            asignaturaSeleccionadaTexto = asignatura6.getText().toString().toUpperCase();
+            asignaturaSeleccionada.setText(asignaturaSeleccionadaTexto);
         });
 
         asignatura7.setOnClickListener(v -> {
-            String textoBoton = asignatura7.getText().toString().toUpperCase();
-            asignaturaSeleccionada.setText(textoBoton);
+            asignaturaSeleccionadaTexto = asignatura7.getText().toString().toUpperCase();
+            asignaturaSeleccionada.setText(asignaturaSeleccionadaTexto);
         });
 
         aceptarSeleccionAsignatura.setOnClickListener(v -> {
@@ -73,9 +82,19 @@ public class SeleccionAsignatura extends AppCompatActivity {
             }
         });
 
+        cancelarSeleccionAsignatura.setOnClickListener(v -> finish());
+    }
 
-        cancelarSeleccionAsignatura.setOnClickListener(v -> {
-            finish();
-        });
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("asignaturaSeleccionada", asignaturaSeleccionada.getText().toString());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        asignaturaSeleccionadaTexto = savedInstanceState.getString("asignaturaSeleccionada", "");
+        asignaturaSeleccionada.setText(asignaturaSeleccionadaTexto);
     }
 }
