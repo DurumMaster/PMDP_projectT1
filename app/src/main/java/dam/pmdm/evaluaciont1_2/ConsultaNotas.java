@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.Fragment;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -34,6 +35,7 @@ public class ConsultaNotas extends AppCompatActivity {
     private FrameLayout flNota7;
 
     String alumno;
+    List<FrameLayout> contenedores;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,17 +51,7 @@ public class ConsultaNotas extends AppCompatActivity {
         etAlummo = findViewById(R.id.etAlumnoConsulta);
         btnSeleccionLimpiar = findViewById(R.id.btnSeleccionarAlumnoConsulta);
 
-        /*
-        flNota1 = findViewById(R.id.flNota1);
-        flNota2 = findViewById(R.id.flNota2);
-        flNota3 = findViewById(R.id.flNota3);
-        flNota4 = findViewById(R.id.flNota4);
-        flNota5 = findViewById(R.id.flNota5);
-        flNota6 = findViewById(R.id.flNota6);
-        flNota7 = findViewById(R.id.flNota7);
-        */
-
-        List<FrameLayout> contenedores = Arrays.asList(
+        contenedores = Arrays.asList(
             findViewById(R.id.flNota1),
             findViewById(R.id.flNota2),
             findViewById(R.id.flNota3),
@@ -101,7 +93,6 @@ public class ConsultaNotas extends AppCompatActivity {
 
         if (btnText.equals(getResources().getString(R.string.btn_limpiar_datos_consulta))) {
             limpiarDatos();
-            btnSeleccionLimpiar.setText(getResources().getString(R.string.btn_seleccionar_alumno_consulta_notas));
         } else {
             Intent intent = new Intent(this, SeleccionAlumnos.class);
             startActivity(intent);
@@ -110,7 +101,16 @@ public class ConsultaNotas extends AppCompatActivity {
 
     private void limpiarDatos() {
         etAlummo.setText("");
-        // TODO: Variar datos layouts
+
+        Fragment fragment;
+        for (FrameLayout frame: contenedores) {
+            fragment = getSupportFragmentManager().findFragmentById(frame.getId());
+            if (fragment != null) {
+                getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+            }
+        }
+
+        btnSeleccionLimpiar.setText(getResources().getString(R.string.btn_seleccionar_alumno_consulta_notas));
     }
 
     private List<Alumno> leerAsignaturasAlumno() {
