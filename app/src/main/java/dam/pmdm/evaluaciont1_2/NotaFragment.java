@@ -70,7 +70,7 @@ public class NotaFragment extends Fragment {
 
         if (savedInstanceState != null) {
             tvAsignatura.setText(savedInstanceState.getString(ARG_ASIGNATURA, ""));
-            tvAsignatura.setText(savedInstanceState.getString(ARG_NOTA, ""));
+            tvNota.setText(savedInstanceState.getString(ARG_NOTA, ""));
         }
 
     }

@@ -162,7 +162,7 @@ public class RegistroNota extends AppCompatActivity {
                 leerArchivoBinario();
                 for (int i = 0; i < listaAlumnos.size() && !encontrado; i++) {
                     alumno = listaAlumnos.get(i);
-                    if(nombre.equals(alumno.getNombre()) && asignatura.equals(alumno.getAsignatura())){
+                    if(nombre.equalsIgnoreCase(alumno.getNombre()) && asignatura.equalsIgnoreCase(alumno.getAsignatura())){
                         alumno.setNotaExamenes(Double.parseDouble(notaExamen));
                         alumno.setNotaActividades(Double.parseDouble(notaActividades));
                         alumno.setNotaFinal(Double.parseDouble(notaFinal));
@@ -185,8 +185,9 @@ public class RegistroNota extends AppCompatActivity {
             ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(archivo));
             for (Alumno alumno : listaAlumnos){
                 oos.writeObject(alumno);
-                Log.d("Pruebas", alumno.getNombre() + " - " + alumno.getAsignatura() + " - " + alumno.getNotaFinal());
+                Log.d("Pruebas-w", alumno.getNombre() + " - " + alumno.getAsignatura() + " - " + alumno.getNotaFinal());
             }
+            Log.d("Pruebas-w", String.valueOf(listaAlumnos.size()));
             oos.close();
             limpiarCampos();
             Toast.makeText(this, R.string.texto_datos_actualizados, Toast.LENGTH_SHORT).show();
@@ -204,6 +205,7 @@ public class RegistroNota extends AppCompatActivity {
     }
 
     private void leerArchivoBinario(){
+        listaAlumnos.clear();
         try {
             File archivo = new File("/data/data/dam.pmdm.evaluaciont1_2/files/alumnos.dat");
             if(archivo.exists()){
@@ -214,10 +216,11 @@ public class RegistroNota extends AppCompatActivity {
                     try{
                         alumno = (Alumno) ois.readObject();
                         listaAlumnos.add(alumno);
-                        Log.d("Pruebas", alumno.getNombre() + " - " + alumno.getAsignatura() + " - " + alumno.getNotaFinal());
+                        Log.d("Pruebas-r", alumno.getNombre() + " - " + alumno.getAsignatura() + " - " + alumno.getNotaFinal());
                     } catch (Exception e){
                         seguir = false;
                     }
+                    Log.d("Pruebas-r", String.valueOf(listaAlumnos.size()));
                 }
                 ois.close();
             } else {

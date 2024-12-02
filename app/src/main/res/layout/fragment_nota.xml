@@ -11,6 +11,7 @@
         android:id="@+id/tvAsignatura"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/tvNota"
         app:layout_constraintTop_toTopOf="parent"
@@ -20,7 +21,9 @@
         android:id="@+id/tvNota"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginLeft="55dp"
         app:layout_constraintStart_toEndOf="@+id/tvAsignatura"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>

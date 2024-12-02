@@ -125,17 +125,17 @@ public class ConsultaNotas extends AppCompatActivity {
 
     private List<Alumno> leerAsignaturasAlumno() {
         List<Alumno> asignaturas = new ArrayList<Alumno>();
-        Alumno asignatura;
+        Alumno asignatura = null;
         boolean acabar = false;
         //getFilesDir(),"alumnos.dat"
-        File file = new File("/data/data/dam.pmdm.evaluaciont1_2/files/alumnos.dat");
+        File file = new File(getFilesDir(),"alumnos.dat");
 
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
             while (!acabar) {
                 try {
                     asignatura = (Alumno) ois.readObject();
 
-                    if (asignatura.getNotaFinal() != 0 && asignatura.getNombre().equals(alumno))
+                    if (asignatura.getNotaFinal() != 0 && asignatura.getNombre().equalsIgnoreCase(alumno))
                         asignaturas.add(asignatura);
                 } catch (IOException | ClassNotFoundException e) {
                     acabar = true;

@@ -22,7 +22,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <!-- Inicio de Sufrimiento -->
-
     <Button
         android:id="@+id/btnAlumno1"
         android:layout_width="250dp"
@@ -404,6 +403,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:enabled="false"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
