@@ -56,6 +56,7 @@ public class RegistroNota extends AppCompatActivity {
             return insets;
         });
         listaAlumnos = new ArrayList<Alumno>();
+        leerArchivoBinario();
 
         etAlumno = findViewById(R.id.etAlumno);
         etAsignatura = findViewById(R.id.etAsignatura);
@@ -159,7 +160,6 @@ public class RegistroNota extends AppCompatActivity {
         boolean encontrado = false;
         if(!nombre.isEmpty() && !asignatura.isEmpty()){ 
             if(!notaExamen.isEmpty() && !notaActividades.isEmpty() && !notaFinal.isEmpty()){
-                leerArchivoBinario();
                 for (int i = 0; i < listaAlumnos.size() && !encontrado; i++) {
                     alumno = listaAlumnos.get(i);
                     if(nombre.equalsIgnoreCase(alumno.getNombre()) && asignatura.equalsIgnoreCase(alumno.getAsignatura())){

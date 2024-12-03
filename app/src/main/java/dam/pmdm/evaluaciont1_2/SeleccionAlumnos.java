@@ -1,9 +1,11 @@
 package dam.pmdm.evaluaciont1_2;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -15,7 +17,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class SeleccionAlumnos extends AppCompatActivity {
 
-    private EditText alumnoSeleccionado;
+    private EditText etAlumnoSeleccionado;
     private String alumnoSeleccionadoTexto = "";
 
     @Override
@@ -29,56 +31,49 @@ public class SeleccionAlumnos extends AppCompatActivity {
             return insets;
         });
 
-        Button alumno1 = findViewById(R.id.btnAlumno1);
-        Button alumno2 = findViewById(R.id.btnAlumno2);
-        Button alumno3 = findViewById(R.id.btnAlumno3);
-        Button alumno4 = findViewById(R.id.btnAlumno4);
-        Button alumno5 = findViewById(R.id.btnAlumno5);
-        Button alumno6 = findViewById(R.id.btnAlumno6);
-        Button alumno7 = findViewById(R.id.btnAlumno7);
-        Button alumno8 = findViewById(R.id.btnAlumno8);
-        Button alumno9 = findViewById(R.id.btnAlumno9);
-        Button alumno10 = findViewById(R.id.btnAlumno10);
-        Button alumno11 = findViewById(R.id.btnAlumno11);
-        Button alumno12 = findViewById(R.id.btnAlumno12);
-        Button alumno13 = findViewById(R.id.btnAlumno13);
-        Button alumno14 = findViewById(R.id.btnAlumno14);
-        Button alumno15 = findViewById(R.id.btnAlumno15);
-        Button alumno16 = findViewById(R.id.btnAlumno16);
-        Button alumno17 = findViewById(R.id.btnAlumno17);
-        Button alumno18 = findViewById(R.id.btnAlumno18);
-        Button alumno19 = findViewById(R.id.btnAlumno19);
-        Button alumno20 = findViewById(R.id.btnAlumno20);
-        Button alumno21 = findViewById(R.id.btnAlumno21);
-        Button alumno22 = findViewById(R.id.btnAlumno22);
-
-        alumnoSeleccionado = findViewById(R.id.etAlumnoSeleccionado);
-
-        alumno1.setOnClickListener(v -> setAlumnoSeleccionado(alumno1));
-        alumno2.setOnClickListener(v -> setAlumnoSeleccionado(alumno2));
-        alumno3.setOnClickListener(v -> setAlumnoSeleccionado(alumno3));
-        alumno4.setOnClickListener(v -> setAlumnoSeleccionado(alumno4));
-        alumno5.setOnClickListener(v -> setAlumnoSeleccionado(alumno5));
-        alumno6.setOnClickListener(v -> setAlumnoSeleccionado(alumno6));
-        alumno7.setOnClickListener(v -> setAlumnoSeleccionado(alumno7));
-        alumno8.setOnClickListener(v -> setAlumnoSeleccionado(alumno8));
-        alumno9.setOnClickListener(v -> setAlumnoSeleccionado(alumno9));
-        alumno10.setOnClickListener(v -> setAlumnoSeleccionado(alumno10));
-        alumno11.setOnClickListener(v -> setAlumnoSeleccionado(alumno11));
-        alumno12.setOnClickListener(v -> setAlumnoSeleccionado(alumno12));
-        alumno13.setOnClickListener(v -> setAlumnoSeleccionado(alumno13));
-        alumno14.setOnClickListener(v -> setAlumnoSeleccionado(alumno14));
-        alumno15.setOnClickListener(v -> setAlumnoSeleccionado(alumno15));
-        alumno16.setOnClickListener(v -> setAlumnoSeleccionado(alumno16));
-        alumno17.setOnClickListener(v -> setAlumnoSeleccionado(alumno17));
-        alumno18.setOnClickListener(v -> setAlumnoSeleccionado(alumno18));
-        alumno19.setOnClickListener(v -> setAlumnoSeleccionado(alumno19));
-        alumno20.setOnClickListener(v -> setAlumnoSeleccionado(alumno20));
-        alumno21.setOnClickListener(v -> setAlumnoSeleccionado(alumno21));
-        alumno22.setOnClickListener(v -> setAlumnoSeleccionado(alumno22));
+        etAlumnoSeleccionado = findViewById(R.id.etAlumnoSeleccionado);
 
         Button aceptarSeleccionAlumno = findViewById(R.id.btnAceptarSeleccionAlumno);
         Button cancelarSeleccionAlumno = findViewById(R.id.btnCancelarSeleccionAlumno);
+
+        String [] alumnos = {
+                "Víctor Anguita Martínez de Velasco",
+                "Miguel Cañizares Chichon",
+                "Nander Antonio Cueva Machuca",
+                "Bony Pablo Diez Ateca",
+                "Ana Coral Fernández Arteta",
+                "Ignacio Fernández Periáñez",
+                "Bernardino Font García",
+                "Alvaro García Guimaraens",
+                "Mario Gómez Pérez",
+                "Carlos Hernández Borja",
+                "Axel León Arroyo",
+                "Camilo Armando Maita Bracamonte",
+                "Oscar Martín García",
+                "Guillermo Martín Muñoz",
+                "Clara Nuevo Mota",
+                "Alejandro Martínez Bravo",
+                "Adrian Ignacio Ocaña de Frutos",
+                "Lucas René Oliveira Urrutia",
+                "Alejandro Ramírez Gómez",
+                "Roberto Ruíz",
+                "Angel Santana Aguilera",
+                "Cindy Vanessa Taboada Guerra"
+        };
+
+        LinearLayout layout = findViewById(R.id.llBotonesAlumno);
+        Button btnAlumno = null;
+        for (String alumno : alumnos){
+            btnAlumno = new Button(this);
+            btnAlumno.setText(alumno);
+            btnAlumno.setBackgroundColor(getResources().getColor(R.color.white));
+            layout.addView(btnAlumno);
+
+            btnAlumno.setOnClickListener(view ->{
+                etAlumnoSeleccionado.setText(alumno);
+                alumnoSeleccionadoTexto = alumno;
+            });
+        }
 
         aceptarSeleccionAlumno.setOnClickListener(v -> {
             if (alumnoSeleccionadoTexto.isEmpty()) {
@@ -94,10 +89,6 @@ public class SeleccionAlumnos extends AppCompatActivity {
         cancelarSeleccionAlumno.setOnClickListener(v -> finish());
     }
 
-    private void setAlumnoSeleccionado(Button alumnoButton) {
-        alumnoSeleccionadoTexto = alumnoButton.getText().toString().toUpperCase();
-        alumnoSeleccionado.setText(alumnoSeleccionadoTexto);
-    }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -110,7 +101,7 @@ public class SeleccionAlumnos extends AppCompatActivity {
         super.onRestoreInstanceState(savedInstanceState);
         if (savedInstanceState != null) {
             alumnoSeleccionadoTexto = savedInstanceState.getString("alumnoSeleccionado", "");
-            alumnoSeleccionado.setText(alumnoSeleccionadoTexto);
+            etAlumnoSeleccionado.setText(alumnoSeleccionadoTexto);
         }
     }
 }
