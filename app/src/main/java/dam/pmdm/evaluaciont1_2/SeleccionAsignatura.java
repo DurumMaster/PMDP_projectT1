@@ -32,7 +32,7 @@ public class SeleccionAsignatura extends AppCompatActivity {
         for (String asignatura: asignaturas) {
             btnAsignatura = new Button(this);
             btnAsignatura.setText(asignatura);
-            btnAsignatura.setBackgroundColor(getResources().getColor(R.color.white));
+            btnAsignatura.setBackgroundColor(getResources().getColor(R.color.soft_red_background));
             btnAsignatura.setTextSize(16);
             layout.addView(btnAsignatura);
 

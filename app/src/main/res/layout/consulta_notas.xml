@@ -17,7 +17,6 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.323"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -46,75 +45,15 @@
         app:layout_constraintStart_toEndOf="@id/etAlumnoConsulta"
         app:layout_constraintTop_toBottomOf="@id/tvTituloConsulta" />
 
-    <FrameLayout
-        android:id="@+id/flNota1"
-        android:layout_width="150dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnSeleccionarAlumnoConsulta" />
-
-    <FrameLayout
-        android:id="@+id/flNota2"
-        android:layout_width="150dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/flNota1" />
-
-    <FrameLayout
-        android:id="@+id/flNota3"
-        android:layout_width="150dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/flNota2" />
-
-    <FrameLayout
-        android:id="@+id/flNota4"
-        android:layout_width="150dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/flNota3" />
-
-    <FrameLayout
-        android:id="@+id/flNota5"
-        android:layout_width="150dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/flNota4" />
-
-    <FrameLayout
-        android:id="@+id/flNota6"
-        android:layout_width="150dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/flNota5" />
-
-    <FrameLayout
-        android:id="@+id/flNota7"
-        android:layout_width="150dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/flNota6" />
+    <LinearLayout
+        android:id="@+id/llFragmentsNotas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:paddingHorizontal="75dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/btnSeleccionarAlumnoConsulta"
+        tools:layout_editor_absoluteX="18dp" />
 
     <TextView
         android:id="@+id/tvError"
