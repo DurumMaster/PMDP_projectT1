@@ -1,12 +1,11 @@
 package dam.pmdm.evaluaciont1_2;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.Toast;
+import android.widget.LinearLayout;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -66,7 +65,7 @@ public class SeleccionAlumnos extends AppCompatActivity {
         for (String alumno : alumnos){
             btnAlumno = new Button(this);
             btnAlumno.setText(alumno);
-            btnAlumno.setBackgroundColor(getResources().getColor(R.color.white));
+            btnAlumno.setBackgroundColor(getResources().getColor(R.color.soft_red_background));
             layout.addView(btnAlumno);
 
             btnAlumno.setOnClickListener(view ->{
@@ -91,7 +90,7 @@ public class SeleccionAlumnos extends AppCompatActivity {
 
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putString("alumnoSeleccionado", alumnoSeleccionadoTexto);
     }

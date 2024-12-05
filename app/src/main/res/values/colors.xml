@@ -3,4 +3,5 @@
     <color name="red">#FF3131</color>
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
+    <color name="soft_red_background">#fef7ff</color>
 </resources>

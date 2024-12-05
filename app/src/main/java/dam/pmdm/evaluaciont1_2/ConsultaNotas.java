@@ -6,11 +6,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -22,17 +24,16 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class ConsultaNotas extends AppCompatActivity {
 
-    private EditText etAlummo;
+    private EditText etAlumno;
     private Button btnSeleccionLimpiar;
     private TextView tvError;
+    private LinearLayout llFragmentsNotas;
 
     String alumno;
-    List<FrameLayout> contenedores;
     ActivityResultLauncher<Intent> seleccionAlumno;
 
     @Override
@@ -46,19 +47,11 @@ public class ConsultaNotas extends AppCompatActivity {
             return insets;
         });
 
-        etAlummo = findViewById(R.id.etAlumnoConsulta);
+        etAlumno = findViewById(R.id.etAlumnoConsulta);
         btnSeleccionLimpiar = findViewById(R.id.btnSeleccionarAlumnoConsulta);
         tvError = findViewById(R.id.tvError);
 
-        contenedores = Arrays.asList(
-            findViewById(R.id.flNota1),
-            findViewById(R.id.flNota2),
-            findViewById(R.id.flNota3),
-            findViewById(R.id.flNota4),
-            findViewById(R.id.flNota5),
-            findViewById(R.id.flNota6),
-            findViewById(R.id.flNota7)
-        );
+        llFragmentsNotas = findViewById(R.id.llFragmentsNotas);
 
         seleccionAlumno = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
@@ -68,10 +61,10 @@ public class ConsultaNotas extends AppCompatActivity {
                         if (data != null) {
                             alumno = data.getStringExtra("ALUMNO");
                             if (alumno != null) {
-                                etAlummo.setText(alumno);
+                                etAlumno.setText(alumno);
                                 btnSeleccionLimpiar.setText(R.string.btn_limpiar_datos_consulta);
                                 List<Alumno> asignaturas = leerAsignaturasAlumno();
-                                mostrarAsignaturas(asignaturas, contenedores);
+                                mostrarAsignaturas(asignaturas);
                             }
                         }
                     }
@@ -79,15 +72,25 @@ public class ConsultaNotas extends AppCompatActivity {
         );
     }
 
-    private void mostrarAsignaturas(List<Alumno> asignaturas, List<FrameLayout> contenedores) {
+    private void mostrarAsignaturas(List<Alumno> asignaturas) {
 
         if (!asignaturas.isEmpty()) {
             Alumno asignatura;
+            FrameLayout flNota;
+            Fragment fragment;
             for (int i = 0; i < asignaturas.size(); i++) {
+                flNota = new FrameLayout(this);
+                flNota.setId(View.generateViewId());
+
                 asignatura = asignaturas.get(i);
-                getSupportFragmentManager().beginTransaction()
-                        .replace(contenedores.get(i).getId(), NotaFragment.newInstance(asignatura.getAsignatura(), String.valueOf(asignatura.getNotaFinal())))
-                        .commit();
+
+                fragment = getSupportFragmentManager().findFragmentByTag("fragment_" + i);
+                if (fragment == null) {
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(flNota.getId(), NotaFragment.newInstance(asignatura.getAsignatura(), String.valueOf(asignatura.getNotaFinal())), "fragment_" + i)
+                            .commit();
+                }
+                llFragmentsNotas.addView(flNota);
             }
         } else {
             tvError.setText(R.string.tv_consultanotas_error_vacio);
@@ -110,10 +113,12 @@ public class ConsultaNotas extends AppCompatActivity {
     }
 
     private void limpiarDatos() {
-        etAlummo.setText("");
+        etAlumno.setText("");
 
+        FrameLayout frame;
         Fragment fragment;
-        for (FrameLayout frame: contenedores) {
+        for (int i = 0; i < llFragmentsNotas.getChildCount(); i++) {
+            frame = (FrameLayout) llFragmentsNotas.getChildAt(i);
             fragment = getSupportFragmentManager().findFragmentById(frame.getId());
             if (fragment != null) {
                 getSupportFragmentManager().beginTransaction().remove(fragment).commit();
@@ -127,7 +132,6 @@ public class ConsultaNotas extends AppCompatActivity {
         List<Alumno> asignaturas = new ArrayList<Alumno>();
         Alumno asignatura = null;
         boolean acabar = false;
-        //getFilesDir(),"alumnos.dat"
         File file = new File(getFilesDir(),"alumnos.dat");
 
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
@@ -148,4 +152,54 @@ public class ConsultaNotas extends AppCompatActivity {
         return asignaturas;
     }
 
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        ArrayList<String> asignaturas = new ArrayList<>();
+        ArrayList<String> notas = new ArrayList<>();
+
+        FrameLayout fl;
+        NotaFragment fragment;
+
+        for (int i = 0; i < llFragmentsNotas.getChildCount(); i++) {
+            fl = (FrameLayout) llFragmentsNotas.getChildAt(i);
+            fragment = (NotaFragment) getSupportFragmentManager().findFragmentById(fl.getId());
+
+            if (fragment != null && fragment.getArguments() != null) {
+                asignaturas.add(fragment.getArguments().getString("asignatura"));
+                notas.add(fragment.getArguments().getString("nota"));
+            }
+        }
+
+        outState.putStringArrayList("ASIGNATURAS", asignaturas);
+        outState.putStringArrayList("NOTAS", notas);
+        outState.putString("TXT_BTN", btnSeleccionLimpiar.getText().toString());
+        outState.putString("TXT_ERROR", tvError.getText().toString());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        ArrayList<String> asignaturas = savedInstanceState.getStringArrayList("ASIGNATURAS");
+        ArrayList<String> notas = savedInstanceState.getStringArrayList("NOTAS");
+
+        if (asignaturas != null && notas != null) {
+            FrameLayout flNota;
+            for (int i = 0; i < asignaturas.size(); i++) {
+                flNota = new FrameLayout(this);
+                flNota.setId(View.generateViewId());
+
+                getSupportFragmentManager().beginTransaction()
+                        .add(flNota.getId(), NotaFragment.newInstance(asignaturas.get(i), notas.get(i)), "fragment_" + i)
+                        .commit();
+
+                llFragmentsNotas.addView(flNota);
+            }
+        }
+        btnSeleccionLimpiar.setText(savedInstanceState.getString("TXT_BTN"));
+        tvError.setText(savedInstanceState.getString("TXT_ERROR"));
+    }
 }
+

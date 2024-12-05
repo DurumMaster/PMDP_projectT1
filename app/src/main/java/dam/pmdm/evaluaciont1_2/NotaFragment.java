@@ -5,6 +5,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +42,7 @@ public class NotaFragment extends Fragment {
         if (getArguments() != null) {
             asignatura = getArguments().getString(ARG_ASIGNATURA);
             nota = getArguments().getString(ARG_NOTA);
+            Log.d("PruebaEstado", "Ha entrado a oncreate: " + asignatura +","+nota);
         }
     }
 
@@ -49,7 +52,7 @@ public class NotaFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_nota, container, false);
         tvAsignatura = view.findViewById(R.id.tvAsignatura);
         tvNota = view.findViewById(R.id.tvNota);
-
+        Log.d("PruebaEstado", "Ha entrado a oncreateview: " + asignatura +","+nota);
         tvAsignatura.setText(asignatura);
         tvNota.setText(nota);
 
@@ -59,9 +62,9 @@ public class NotaFragment extends Fragment {
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-
-        outState.putString(ARG_ASIGNATURA, tvAsignatura.getText().toString());
-        outState.putString(ARG_NOTA, tvNota.getText().toString());
+        Log.d("PruebaEstado", "Ha entrado a save: " + asignatura +","+nota);
+        outState.putString(ARG_ASIGNATURA, asignatura);
+        outState.putString(ARG_NOTA, nota);
     }
 
     @Override
@@ -69,8 +72,8 @@ public class NotaFragment extends Fragment {
         super.onViewStateRestored(savedInstanceState);
 
         if (savedInstanceState != null) {
-            tvAsignatura.setText(savedInstanceState.getString(ARG_ASIGNATURA, ""));
-            tvNota.setText(savedInstanceState.getString(ARG_NOTA, ""));
+            asignatura = savedInstanceState.getString(ARG_ASIGNATURA);
+            nota = savedInstanceState.getString(ARG_NOTA);
         }
 
     }
