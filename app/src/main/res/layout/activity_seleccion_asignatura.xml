@@ -7,19 +7,18 @@
     android:padding="18dp"
     tools:context=".SeleccionAsignatura">
 
+
     <TextView
         android:id="@+id/tvTituloSeleccion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="293dp"
+        android:layout_height="0dp"
         android:text="@string/texto_titulo_seleccion"
         android:textColor="@color/red"
         android:textSize="22sp"
         android:textStyle="bold"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
         android:id="@+id/svBotones"

@@ -12,7 +12,6 @@
         android:id="@+id/tvTituloSeleccionAlumno"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
         android:text="@string/txt_titulo_seleccion_alumno"
         android:textColor="@color/red"
         android:textSize="20sp"

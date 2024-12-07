@@ -1,7 +1,7 @@
 package dam.pmdm.evaluaciont1_2;
 
 import android.content.Intent;
-import android.graphics.Color;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,6 +10,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.Locale;
 
 public class SeleccionAsignatura extends AppCompatActivity {
 
@@ -27,20 +29,19 @@ public class SeleccionAsignatura extends AppCompatActivity {
         Button cancelarSeleccionAsignatura = findViewById(R.id.btnSeleccionCancelar);
 
         LinearLayout layout = findViewById(R.id.llBotones);
-        String [] asignaturas = {"PMDM","AD","PSP","DI","SGE","IACC","IOS"};
+        String[] asignaturas = {"PMDM", "AD", "PSP", "DI", "SGE", "IACC", "IOS"};
         Button btnAsignatura = null;
-        for (String asignatura: asignaturas) {
+        for (String asignatura : asignaturas) {
             btnAsignatura = new Button(this);
             btnAsignatura.setText(asignatura);
             btnAsignatura.setBackgroundColor(getResources().getColor(R.color.soft_red_background));
             btnAsignatura.setTextSize(16);
             layout.addView(btnAsignatura);
 
-            btnAsignatura.setOnClickListener(view ->{
+            btnAsignatura.setOnClickListener(view -> {
                 etAsignaturaSeleccionada.setText(asignatura);
                 asignaturaSeleccionadaTexto = asignatura;
             });
-
         }
 
         aceptarSeleccionAsignatura.setOnClickListener(v -> {
@@ -56,6 +57,7 @@ public class SeleccionAsignatura extends AppCompatActivity {
         });
 
         cancelarSeleccionAsignatura.setOnClickListener(v -> finish());
+
     }
 
     @Override

@@ -9,7 +9,6 @@
     android:padding="18dp"
     tools:context=".RegistroNota">
 
-
     <TextView
         android:id="@+id/tvTituloRegistro"
         android:layout_width="match_parent"
@@ -20,8 +19,8 @@
         android:textColor="@color/red"
         android:textSize="22sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <LinearLayout
         android:id="@+id/llAlumno"
