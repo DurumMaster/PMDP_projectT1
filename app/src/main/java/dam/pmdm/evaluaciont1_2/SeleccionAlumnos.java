@@ -2,6 +2,7 @@ package dam.pmdm.evaluaciont1_2;
 
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -69,6 +70,7 @@ public class SeleccionAlumnos extends AppCompatActivity {
         for (String alumno : alumnos) {
             btnAlumno = new Button(this);
             btnAlumno.setText(alumno);
+            btnAlumno.setTextColor(getResources().getColor(R.color.black));
             btnAlumno.setBackgroundColor(getResources().getColor(R.color.soft_red_background));
             layout.addView(btnAlumno);
 

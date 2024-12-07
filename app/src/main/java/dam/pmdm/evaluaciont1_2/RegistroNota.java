@@ -126,14 +126,13 @@ public class RegistroNota extends AppCompatActivity {
                         } else {
                             notaFinal = notaExamen * 0.7 + notaActividades * 0.3;
                         }
+                        etResultado.setText(String.format("%.2f", notaFinal));
                     } else {
                         Toast.makeText(this, R.string.toast_nota_actividades, Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     Toast.makeText(this, R.string.toast_nota_examen, Toast.LENGTH_SHORT).show();
                 }
-
-                etResultado.setText(String.format("%.2f", notaFinal));
 
             } else {
                 Toast.makeText(this, R.string.toast_registro_validacion_nota_actividades, Toast.LENGTH_SHORT).show();
@@ -159,6 +158,11 @@ public class RegistroNota extends AppCompatActivity {
         String notaExamen = etNotaExamen.getText().toString();
         String notaActividades = etNotaActividades.getText().toString();
         String notaFinal = etResultado.getText().toString();
+
+        if(notaFinal.contains(",")){
+            notaFinal = notaFinal.replace(",",".");
+        }
+
         Alumno alumno = null;
         boolean encontrado = false;
         if(!nombre.isEmpty() && !asignatura.isEmpty()){
