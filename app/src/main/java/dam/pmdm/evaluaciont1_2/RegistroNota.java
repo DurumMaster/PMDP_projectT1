@@ -234,6 +234,12 @@ public class RegistroNota extends AppCompatActivity {
         }
     }
 
+    public void volverAtras(View view){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);

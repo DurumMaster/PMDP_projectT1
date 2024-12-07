@@ -15,9 +15,10 @@
         android:text="@string/txt_titulo_consultar_notas"
         android:textColor="@color/red"
         android:textSize="20sp"
+        android:layout_marginTop="5dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnVolverConsulta"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
@@ -66,5 +67,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
+
+    <ImageButton
+        android:id="@+id/btnVolverConsulta"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:src="@drawable/icono_flecha"
+        android:onClick="volverAtras"
+        android:background="@color/soft_red_background"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
