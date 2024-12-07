@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Class Management</string>
+    <string name="btnCambiarIdioma">Spanish</string>
+    <string name="btnRegistrarNotaInicio">Register Grade</string>
+    <string name="btnConsultarNotaInicio">Check Grade</string>
+    <string name="texto_titulo_registro">Grade Registration</string>
+    <string name="texto_pista_alumno">Select the student</string>
+    <string name="texto_pista_asignatura">Select the subject</string>
+    <string name="texto_btn_asignatura">Select Subject</string>
+    <string name="texto_pista_nota">Exam grade</string>
+    <string name="texto_btn_calcular_nota">Calculate Grade</string>
+    <string name="texto_btn_guardar_datos">Save Data</string>
+    <string name="texto_titulo_seleccion">Subject Selection</string>
+    <string name="txt_btn_aceptar">Accept</string>
+    <string name="txt_btn_cancelar">Cancel</string>
+    <string name="txt_titulo_seleccion_alumno">Student Selection</string>
+    <string name="txt_titulo_consultar_notas">Check Grades by Student</string>
+    <string name="hint_et_consultar_notas">Student Name</string>
+    <string name="btn_seleccionar_alumno">Select Student</string>
+    <string name="btn_limpiar_datos_consulta">Clear Data</string>
+    <string name="toast_nota_examen">The exam grade must be between 0 and 10</string>
+    <string name="toast_nota_actividades">The activity grade must be between 0 and 10</string>
+    <string name="toast_registro_datos_alumno">The student and subject fields must be filled</string>
+    <string name="texto_datos_actualizados">Data Updated</string>
+    <string name="toast_registro_validacion_nota_examen">You must fill in the exam grade field</string>
+    <string name="toast_registro_validacion_nota_actividades">You must fill in the activity grade field</string>
+    <string name="toast_registro_notas_vacias">The grade fields must be filled</string>
+    <string name="texto_pista_nota_actividades">Activity grade</string>
+    <string name="tv_consultanotas_error_vacio">No records found for the selected students grades</string>
+    <string name="toast_seleccion_alumno">You must specify the selected student</string>
+    <string name="toast_especificar_asignatura">You must specify the subject</string>
+</resources>
