@@ -25,14 +25,6 @@ public class Alumno implements Serializable {
         return notaFinal;
     }
 
-    public double getNotaActividades() {
-        return notaActividades;
-    }
-
-    public double getNotaExamenes() {
-        return notaExamenes;
-    }
-
     public String getAsignatura() {
         return asignatura;
     }

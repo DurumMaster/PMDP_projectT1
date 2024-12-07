@@ -1,6 +1,5 @@
 package dam.pmdm.evaluaciont1_2;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,19 +16,14 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.List;
 
 public class RegistroNota extends AppCompatActivity {
 
@@ -48,10 +42,6 @@ public class RegistroNota extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        String idiomaGuardado = GuardarIdioma.getSavedLanguage(this);
-        ManejarIdioma.setAppLocale(this, idiomaGuardado);
-
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_registro_nota);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -59,6 +49,10 @@ public class RegistroNota extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        String idiomaGuardado = GuardarIdioma.getSavedLanguage(this);
+        ManejarIdioma.setAppLocale(this, idiomaGuardado);
+
         listaAlumnos = new ArrayList<Alumno>();
         leerArchivoBinario();
 
@@ -100,11 +94,7 @@ public class RegistroNota extends AppCompatActivity {
     }
 
     public void onLimpiarClick(View view){
-        etNotaExamen.setText("");
-        etResultado.setText("");
-        etNotaActividades.setText("");
-        etAlumno.setText("");
-        etAsignatura.setText("");
+        limpiarCampos();
     }
 
     public void onCalcularNotaClick(View view){
