@@ -1,6 +1,7 @@
 package dam.pmdm.evaluaciont1_2;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,10 +10,8 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -25,6 +24,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class ConsultaNotas extends AppCompatActivity {
 
@@ -39,7 +39,6 @@ public class ConsultaNotas extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.consulta_notas);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -50,7 +49,6 @@ public class ConsultaNotas extends AppCompatActivity {
         etAlumno = findViewById(R.id.etAlumnoConsulta);
         btnSeleccionLimpiar = findViewById(R.id.btnSeleccionarAlumnoConsulta);
         tvError = findViewById(R.id.tvError);
-
         llFragmentsNotas = findViewById(R.id.llFragmentsNotas);
 
         seleccionAlumno = registerForActivityResult(
@@ -72,8 +70,27 @@ public class ConsultaNotas extends AppCompatActivity {
         );
     }
 
-    private void mostrarAsignaturas(List<Alumno> asignaturas) {
+    public void cambiarIdioma(View view) {
+        String idiomaActual = Locale.getDefault().getLanguage();
+        Locale nuevoIdioma;
 
+        if ("es".equals(idiomaActual)) {
+            nuevoIdioma = new Locale("en");
+        } else {
+            nuevoIdioma = new Locale("es");
+        }
+
+        Locale.setDefault(nuevoIdioma);
+        Configuration config = new Configuration();
+        config.setLocale(nuevoIdioma);
+        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+
+        Intent intent = new Intent(this, ConsultaNotas.class);
+        finish();
+        startActivity(intent);
+    }
+
+    private void mostrarAsignaturas(List<Alumno> asignaturas) {
         if (!asignaturas.isEmpty()) {
             Alumno asignatura;
             FrameLayout flNota;
@@ -95,12 +112,9 @@ public class ConsultaNotas extends AppCompatActivity {
         } else {
             tvError.setText(R.string.tv_consultanotas_error_vacio);
         }
-
-
     }
 
     public void seleccionarAlumno(View view) {
-
         tvError.setText("");
         String btnText = btnSeleccionLimpiar.getText().toString();
 
@@ -153,7 +167,7 @@ public class ConsultaNotas extends AppCompatActivity {
     }
 
     @Override
-    protected void onSaveInstanceState(@NonNull Bundle outState) {
+    protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
         ArrayList<String> asignaturas = new ArrayList<>();
@@ -179,7 +193,7 @@ public class ConsultaNotas extends AppCompatActivity {
     }
 
     @Override
-    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
 
         ArrayList<String> asignaturas = savedInstanceState.getStringArrayList("ASIGNATURAS");
@@ -202,4 +216,3 @@ public class ConsultaNotas extends AppCompatActivity {
         tvError.setText(savedInstanceState.getString("TXT_ERROR"));
     }
 }
-

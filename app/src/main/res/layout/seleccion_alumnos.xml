@@ -12,13 +12,23 @@
         android:id="@+id/tvTituloSeleccionAlumno"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
         android:text="@string/txt_titulo_seleccion_alumno"
         android:textColor="@color/red"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.067"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnCambiarIdioma"
+        android:layout_width="109dp"
+        android:layout_height="37dp"
+        android:backgroundTint="@color/red"
+        android:onClick="cambiarIdioma"
+        android:text="@string/btnCambiarIdioma"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView

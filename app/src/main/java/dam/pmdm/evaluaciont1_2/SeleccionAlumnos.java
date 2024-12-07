@@ -1,11 +1,13 @@
 package dam.pmdm.evaluaciont1_2;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -13,6 +15,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import java.util.Locale;
 
 public class SeleccionAlumnos extends AppCompatActivity {
 
@@ -34,8 +38,9 @@ public class SeleccionAlumnos extends AppCompatActivity {
 
         Button aceptarSeleccionAlumno = findViewById(R.id.btnAceptarSeleccionAlumno);
         Button cancelarSeleccionAlumno = findViewById(R.id.btnCancelarSeleccionAlumno);
+        Button btnCambiarIdioma = findViewById(R.id.btnCambiarIdioma); // Botón para cambiar idioma
 
-        String [] alumnos = {
+        String[] alumnos = {
                 "Víctor Anguita Martínez de Velasco",
                 "Miguel Cañizares Chichon",
                 "Nander Antonio Cueva Machuca",
@@ -61,14 +66,14 @@ public class SeleccionAlumnos extends AppCompatActivity {
         };
 
         LinearLayout layout = findViewById(R.id.llBotonesAlumno);
-        Button btnAlumno = null;
-        for (String alumno : alumnos){
+        Button btnAlumno;
+        for (String alumno : alumnos) {
             btnAlumno = new Button(this);
             btnAlumno.setText(alumno);
             btnAlumno.setBackgroundColor(getResources().getColor(R.color.soft_red_background));
             layout.addView(btnAlumno);
 
-            btnAlumno.setOnClickListener(view ->{
+            btnAlumno.setOnClickListener(view -> {
                 etAlumnoSeleccionado.setText(alumno);
                 alumnoSeleccionadoTexto = alumno;
             });
@@ -86,8 +91,23 @@ public class SeleccionAlumnos extends AppCompatActivity {
         });
 
         cancelarSeleccionAlumno.setOnClickListener(v -> finish());
+
+        btnCambiarIdioma.setOnClickListener(v -> cambiarIdioma());
     }
 
+    private void cambiarIdioma() {
+
+        String idioma = "es";
+        Locale locale = new Locale(idioma);
+        Locale.setDefault(locale);
+        Configuration config = getResources().getConfiguration();
+        config.setLocale(locale);
+        getResources().updateConfiguration(config, getResources().getDisplayMetrics());
+
+        Intent intent = getIntent();
+        finish();
+        startActivity(intent);
+    }
 
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {

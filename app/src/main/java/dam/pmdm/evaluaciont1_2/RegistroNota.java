@@ -48,6 +48,10 @@ public class RegistroNota extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        String idiomaGuardado = GuardarIdioma.getSavedLanguage(this);
+        ManejarIdioma.setAppLocale(this, idiomaGuardado);
+
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_registro_nota);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -93,7 +97,6 @@ public class RegistroNota extends AppCompatActivity {
                     }
                 }
         );
-
     }
 
     public void onLimpiarClick(View view){
@@ -158,7 +161,7 @@ public class RegistroNota extends AppCompatActivity {
         String notaFinal = etResultado.getText().toString();
         Alumno alumno = null;
         boolean encontrado = false;
-        if(!nombre.isEmpty() && !asignatura.isEmpty()){ 
+        if(!nombre.isEmpty() && !asignatura.isEmpty()){
             if(!notaExamen.isEmpty() && !notaActividades.isEmpty() && !notaFinal.isEmpty()){
                 for (int i = 0; i < listaAlumnos.size() && !encontrado; i++) {
                     alumno = listaAlumnos.get(i);
