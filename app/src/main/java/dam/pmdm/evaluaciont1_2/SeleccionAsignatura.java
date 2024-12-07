@@ -46,7 +46,7 @@ public class SeleccionAsignatura extends AppCompatActivity {
         aceptarSeleccionAsignatura.setOnClickListener(v -> {
             String textoParaEnviar = etAsignaturaSeleccionada.getText().toString().trim();
             if (textoParaEnviar.isEmpty()) {
-                Toast.makeText(this, "Debe especificar la asignatura", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.toast_especificar_asignatura), Toast.LENGTH_SHORT).show();
             } else {
                 Intent intent = new Intent();
                 intent.putExtra("ASIGNATURA", textoParaEnviar);

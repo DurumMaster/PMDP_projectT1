@@ -47,7 +47,7 @@
             android:id="@+id/btnSeleccionarAlumno"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/texto_btn_alumno"
+            android:text="@string/btn_seleccionar_alumno"
             android:layout_weight="1"
             android:onClick="onSeleccionarAlumnoClick"
             android:backgroundTint="@color/red"

@@ -76,7 +76,7 @@ public class SeleccionAlumnos extends AppCompatActivity {
 
         aceptarSeleccionAlumno.setOnClickListener(v -> {
             if (alumnoSeleccionadoTexto.isEmpty()) {
-                Toast.makeText(this, "Debe especificar el alumno seleccionado", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.toast_seleccion_alumno), Toast.LENGTH_SHORT).show();
             } else {
                 Intent intent = new Intent();
                 intent.putExtra("ALUMNO", alumnoSeleccionadoTexto);

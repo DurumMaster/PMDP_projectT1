@@ -69,7 +69,7 @@
             android:layout_marginEnd="10dp"
             android:layout_weight="2"
             android:backgroundTint="@color/red"
-            android:text="@string/texto_btn_seleccion_aceptar" />
+            android:text="@string/txt_btn_aceptar" />
 
         <Button
             android:id="@+id/btnSeleccionCancelar"
@@ -77,7 +77,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:backgroundTint="@color/red"
-            android:text="@string/texto_btn_seleccion_cancelar" />
+            android:text="@string/txt_btn_cancelar" />
 
     </LinearLayout>
 

@@ -42,7 +42,7 @@ public class NotaFragment extends Fragment {
         if (getArguments() != null) {
             asignatura = getArguments().getString(ARG_ASIGNATURA);
             nota = getArguments().getString(ARG_NOTA);
-            Log.d("PruebaEstado", "Ha entrado a oncreate: " + asignatura +","+nota);
+            //Log.d("PruebaEstado", "Ha entrado a oncreate: " + asignatura +","+nota);
         }
     }
 
@@ -52,7 +52,7 @@ public class NotaFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_nota, container, false);
         tvAsignatura = view.findViewById(R.id.tvAsignatura);
         tvNota = view.findViewById(R.id.tvNota);
-        Log.d("PruebaEstado", "Ha entrado a oncreateview: " + asignatura +","+nota);
+        //Log.d("PruebaEstado", "Ha entrado a oncreateview: " + asignatura +","+nota);
         tvAsignatura.setText(asignatura);
         tvNota.setText(nota);
 
@@ -62,7 +62,7 @@ public class NotaFragment extends Fragment {
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        Log.d("PruebaEstado", "Ha entrado a save: " + asignatura +","+nota);
+        //Log.d("PruebaEstado", "Ha entrado a save: " + asignatura +","+nota);
         outState.putString(ARG_ASIGNATURA, asignatura);
         outState.putString(ARG_NOTA, nota);
     }

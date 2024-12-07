@@ -125,7 +125,7 @@ public class ConsultaNotas extends AppCompatActivity {
             }
         }
 
-        btnSeleccionLimpiar.setText(getResources().getString(R.string.btn_seleccionar_alumno_consulta_notas));
+        btnSeleccionLimpiar.setText(getResources().getString(R.string.btn_seleccionar_alumno));
     }
 
     private List<Alumno> leerAsignaturasAlumno() {

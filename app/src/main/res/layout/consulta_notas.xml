@@ -40,7 +40,7 @@
         android:layout_marginTop="8dp"
         android:backgroundTint="@color/red"
         android:onClick="seleccionarAlumno"
-        android:text="@string/btn_seleccionar_alumno_consulta_notas"
+        android:text="@string/btn_seleccionar_alumno"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/etAlumnoConsulta"
         app:layout_constraintTop_toBottomOf="@id/tvTituloConsulta" />
