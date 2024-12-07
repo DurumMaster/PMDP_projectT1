@@ -11,8 +11,8 @@
 
     <TextView
         android:id="@+id/tvTituloRegistro"
-        android:layout_width="259dp"
-        android:layout_height="23dp"
+        android:layout_width="353dp"
+        android:layout_height="0dp"
         android:text="@string/texto_titulo_registro"
         android:textAlignment="center"
         android:textColor="@color/red"
@@ -193,16 +193,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btnGuardarDatos"
         app:layout_constraintEnd_toEndOf="parent"/>
-
-    <Button
-        android:id="@+id/btnCambiarIdioma"
-        android:layout_width="109dp"
-        android:layout_height="37dp"
-        android:backgroundTint="@color/red"
-        android:onClick="cambiarIdioma"
-        android:text="@string/btnCambiarIdioma"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

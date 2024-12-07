@@ -27,7 +27,6 @@ public class SeleccionAsignatura extends AppCompatActivity {
 
         Button aceptarSeleccionAsignatura = findViewById(R.id.btnSeleccionAceptar);
         Button cancelarSeleccionAsignatura = findViewById(R.id.btnSeleccionCancelar);
-        Button btnCambiarIdioma = findViewById(R.id.btnCambiarIdioma);
 
         LinearLayout layout = findViewById(R.id.llBotones);
         String[] asignaturas = {"PMDM", "AD", "PSP", "DI", "SGE", "IACC", "IOS"};
@@ -59,28 +58,6 @@ public class SeleccionAsignatura extends AppCompatActivity {
 
         cancelarSeleccionAsignatura.setOnClickListener(v -> finish());
 
-        btnCambiarIdioma.setOnClickListener(v -> cambiarIdioma());
-    }
-
-    private void cambiarIdioma() {
-
-        String idiomaActual = Locale.getDefault().getLanguage();
-
-        Locale nuevoIdioma;
-        if ("es".equals(idiomaActual)) {
-            nuevoIdioma = new Locale("en"); // Cambiar a inglés
-        } else {
-            nuevoIdioma = new Locale("es"); // Cambiar a español
-        }
-
-        Locale.setDefault(nuevoIdioma);
-        Configuration config = new Configuration();
-        config.locale = nuevoIdioma;
-        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-
-        Intent intent = new Intent(this, SeleccionAsignatura.class);
-        finish();
-        startActivity(intent);
     }
 
     @Override

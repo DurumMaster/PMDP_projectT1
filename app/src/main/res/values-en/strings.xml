@@ -7,7 +7,7 @@
     <string name="texto_pista_alumno">Select the student</string>
     <string name="texto_pista_asignatura">Select the subject</string>
     <string name="texto_btn_asignatura">Select Subject</string>
-    <string name="texto_pista_nota">Exam grade</string>
+    <string name="texto_pista_nota">Exam Grade</string>
     <string name="texto_btn_calcular_nota">Calculate Grade</string>
     <string name="texto_btn_guardar_datos">Save Data</string>
     <string name="texto_titulo_seleccion">Subject Selection</string>
@@ -25,7 +25,7 @@
     <string name="toast_registro_validacion_nota_examen">You must fill in the exam grade field</string>
     <string name="toast_registro_validacion_nota_actividades">You must fill in the activity grade field</string>
     <string name="toast_registro_notas_vacias">The grade fields must be filled</string>
-    <string name="texto_pista_nota_actividades">Activity grade</string>
+    <string name="texto_pista_nota_actividades">Activity Grade</string>
     <string name="tv_consultanotas_error_vacio">No records found for the selected students grades</string>
     <string name="toast_seleccion_alumno">You must specify the selected student</string>
     <string name="toast_especificar_asignatura">You must specify the subject</string>

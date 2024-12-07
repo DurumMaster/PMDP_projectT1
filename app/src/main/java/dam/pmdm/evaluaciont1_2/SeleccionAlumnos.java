@@ -38,7 +38,6 @@ public class SeleccionAlumnos extends AppCompatActivity {
 
         Button aceptarSeleccionAlumno = findViewById(R.id.btnAceptarSeleccionAlumno);
         Button cancelarSeleccionAlumno = findViewById(R.id.btnCancelarSeleccionAlumno);
-        Button btnCambiarIdioma = findViewById(R.id.btnCambiarIdioma); // Botón para cambiar idioma
 
         String[] alumnos = {
                 "Víctor Anguita Martínez de Velasco",
@@ -91,22 +90,6 @@ public class SeleccionAlumnos extends AppCompatActivity {
         });
 
         cancelarSeleccionAlumno.setOnClickListener(v -> finish());
-
-        btnCambiarIdioma.setOnClickListener(v -> cambiarIdioma());
-    }
-
-    private void cambiarIdioma() {
-
-        String idioma = "es";
-        Locale locale = new Locale(idioma);
-        Locale.setDefault(locale);
-        Configuration config = getResources().getConfiguration();
-        config.setLocale(locale);
-        getResources().updateConfiguration(config, getResources().getDisplayMetrics());
-
-        Intent intent = getIntent();
-        finish();
-        startActivity(intent);
     }
 
     @Override

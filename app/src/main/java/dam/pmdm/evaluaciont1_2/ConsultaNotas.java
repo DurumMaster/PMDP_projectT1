@@ -70,26 +70,6 @@ public class ConsultaNotas extends AppCompatActivity {
         );
     }
 
-    public void cambiarIdioma(View view) {
-        String idiomaActual = Locale.getDefault().getLanguage();
-        Locale nuevoIdioma;
-
-        if ("es".equals(idiomaActual)) {
-            nuevoIdioma = new Locale("en");
-        } else {
-            nuevoIdioma = new Locale("es");
-        }
-
-        Locale.setDefault(nuevoIdioma);
-        Configuration config = new Configuration();
-        config.setLocale(nuevoIdioma);
-        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-
-        Intent intent = new Intent(this, ConsultaNotas.class);
-        finish();
-        startActivity(intent);
-    }
-
     private void mostrarAsignaturas(List<Alumno> asignaturas) {
         if (!asignaturas.isEmpty()) {
             Alumno asignatura;
